@@ -1,4 +1,4 @@
-# Project Bao Lam Ecommerce Using ASP.NET Core 3.1 by Đào Hải
+# Bao Lam Ecommerce Using .NET Core 3.1 by Đào Hải
 ## Technologies
 - ASP.NET Core 3.1
 - Entity Framework Core 3.1
