@@ -1,0 +1,31 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.ProductSizeModel.EditProductSizeViewModel
+@{
+    ViewData["Title"] = "EditProductSize";
+    Layout = null;
+}
+
+
+<form asp-action="Edit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" asp-for="@Model.Name"></label>
+            </div>
+            <div class="col-md-6 mr-auto">
+                <div class="input-group">
+                    <input asp-for="@Model.Name" class="form-control" placeholder="Nhập kích cỡ">
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </div>
+</form>
+
+
+
+

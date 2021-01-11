@@ -1,0 +1,118 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.CategoryModel.EditCategoryModel
+@using EcommerceCommon.Infrastructure.Enums
+@{
+    ViewData["Title"] = "EditCategory";
+    Layout = null;
+}
+
+
+<form asp-action="Edit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.EditCategoryViewModel.Id" />
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.EditCategoryViewModel.Name"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-address-card"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.EditCategoryViewModel.Name" class="form-control" placeholder="Nhập họ tên">
+        </div>
+        <span asp-validation-for="@Model.EditCategoryViewModel.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.EditCategoryViewModel.Description"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.EditCategoryViewModel.Description" class="form-control" placeholder="Nhập mô tả">
+        </div>
+        <span asp-validation-for="@Model.EditCategoryViewModel.Description" class="text-danger"></span>
+    </div>
+    @*<div class="form-group">
+        <label class="control-label" asp-for="@Model.category.Sort"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.category.Sort" class="form-control" placeholder="Nhập sắp xếp">
+        </div>
+        <span asp-validation-for="@Model.category.Sort" class="text-danger"></span>
+    </div>*@
+    @*<div class="form-group">
+        <div class="row">
+            <div class="col-md-2"><label asp-for="@Model.category.Status" class="control-label"></label></div>
+            <div class="col-md-2">
+                <select asp-for="@Model.category.Status">
+                    @if (Model.category.Status == Status.InActive)
+                    {
+                        <option value="@Status.InActive" selected>Không hoạt động</option>
+                    }
+                    else
+                    {
+                        <option value="@Status.InActive">Không hoạt động</option>
+                    }
+                    @if (Model.category.Status == Status.Active)
+                    {
+                        <option value="@Status.Active" selected>Hoạt động</option>
+                    }
+                    else
+                    {
+                        <option value="@Status.Active">Hoạt động</option>
+                    }
+                    @if (Model.category.Status == Status.Pending)
+                    {
+                        <option value="@Status.Pending" selected>Đang xử lý</option>
+                    }
+                    else
+                    {
+                        <option value="@Status.Pending">Đang xử lý</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </div>*@
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-2"><label asp-for="@Model.EditCategoryViewModel.ParentId" class="control-label"></label></div>
+            <div class="col-md-2">
+                <select asp-for="@Model.EditCategoryViewModel.ParentId" id="ParentId">
+                    <option value="@Guid.Empty" selected>Không có</option>
+                    @foreach (var item in Model.CategoryParents)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2"><label class="control-label" asp-for="@Model.EditCategoryViewModel.IsDeleted"></label></div>
+            <div class="col-md-1"><input asp-for="@Model.EditCategoryViewModel.IsDeleted" class="form-control" value="true"></div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-2"><label asp-for="@Model.EditCategoryViewModel.ImageFile" class="control-label"></label></div>
+            <div class="col-md-2">
+                <input asp-for="@Model.EditCategoryViewModel.ImageFile" accept="image/" onchange="loadFile(event)" style="margin-bottom:10px" />
+                <img id="output" style="width:120px" />
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+
+        <span asp-validation-for="@Model.EditCategoryViewModel.ImageFile" class="text-danger"></span>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </div>
+</form>
+
+
+

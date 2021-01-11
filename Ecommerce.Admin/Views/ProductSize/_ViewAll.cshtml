@@ -1,0 +1,77 @@
+﻿@model List<Ecommerce.Service.ViewModels.Admin.ProductSizeModel.ProductSizeAdminViewModel>
+@{
+    var stt = 1;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kích cỡ sản phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Kích cỡ sản phẩm</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <a onclick="showInPopup('@Url.Action("Create","ProductSize",null,Context.Request.Scheme)','Tạo mới kích cỡ')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i>Thêm mới</a>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px !important">STT</th>
+                                        <th style="width:200px !important">Tên kích cỡ</th>
+                                        <th style="width:100px !important">Sắp xếp</th>
+                                        <th style="width:80px !important">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td> @item.Name</td>
+                                            <td> @item.Sort </td>
+                                            <td>
+                                                <a onclick="showInPopup('@Url.Action("Edit","ProductSize",new { id =item.Id},Context.Request.Scheme)','Cập nhật kích cỡ')" title="Cập nhật kích cỡ" class="btn btn-primary text-white "><i class="fas fa-random"></i></a>
+                                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                                    <button type="submit" title="Xóa kích cỡ" class="btn btn-danger">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

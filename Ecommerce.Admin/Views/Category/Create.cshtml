@@ -1,0 +1,78 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.CategoryModel.AddCategoryModel
+@{
+    ViewData["Title"] = "CreateCategory";
+    Layout = null;
+}
+
+
+    <form asp-action="Create" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.AddCategoryViewModel.Name"></label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                </div>
+                <input asp-for="@Model.AddCategoryViewModel.Name" class="form-control" placeholder="Nhập họ tên">
+            </div>
+            <span asp-validation-for="@Model.AddCategoryViewModel.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.AddCategoryViewModel.Description"></label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <input asp-for="@Model.AddCategoryViewModel.Description" class="form-control" placeholder="Nhập mô tả">
+            </div>
+            <span asp-validation-for="@Model.AddCategoryViewModel.Description" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <div class="row">
+                <div class="col-md-2"><label asp-for="@Model.category.Status" class="control-label"></label></div>
+                <div class="col-md-4">
+                    <select asp-for="@Model.category.Status">
+                        <option value="@Status.InActive">Không hoạt động</option>
+                        <option value="@Status.Active" selected>Hoạt động</option>
+                        <option value="@Status.Pending">Đang xử lý</option>
+                    </select>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2"><label asp-for="@Model.AddCategoryViewModel.ParentId" class="control-label"></label></div>
+                <div class="col-md-4">
+                    <select asp-for="@Model.AddCategoryViewModel.ParentId" id="ParentId">
+                        <option value="@Guid.Empty" selected>Không có</option>
+                        @foreach (var item in Model.CategoryParents)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2"><label asp-for="@Model.AddCategoryViewModel.ImageFile" class="control-label"></label></div>
+                <div class="col-md-4">
+                    <input asp-for="@Model.AddCategoryViewModel.ImageFile" accept="image/" onchange="loadFile(event)" style="margin-bottom:10px" />
+                    <img id="output" style="width:120px" />
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+    </form>
+
+
+
+

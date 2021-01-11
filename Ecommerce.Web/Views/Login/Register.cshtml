@@ -1,0 +1,178 @@
+﻿@model Ecommerce.Service.Dto.UserDto
+
+<div class="container-fluid ">
+    <div class="row mt-3">
+        <div class="col-md-6 mr-auto ml-auto">
+            <form class="form-horizontal" asp-action="Register" asp-controller="Login" method="post" spellcheck="false">
+                <fieldset>
+                    <!-- Sign Up Form -->
+                    <!-- Text input-->
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <h2>Tạo Tài Khoản</h2>
+                            <hr />
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="Role" value="@Ecommerce.Domain.Models.Role.Customer" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label" for="Name">Họ tên:<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-address-card"></i>
+                                        </div>
+                                    </div>
+                                    <input id="Name" asp-for="Name" class="form-control" type="text" placeholder="Nhập họ tên"
+                                           oninput='this.value=this.value.replace(/\d/g, "")'>
+                                </div>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label" for="Username">Tên Đăng Nhập:<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <input id="Username" asp-for="Username" class="form-control" type="text" placeholder="Nhập tên đăng nhập">
+                                </div>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                                <span class="text-danger" id="message">@ViewBag.Message</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label" for="password">Mật khẩu:<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <input id="password" asp-for="Password" class="form-control" type="password" placeholder="Mật Khẩu từ 6 đến 32 ký tự" >
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label" for="address">Địa Chỉ:</label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input id="password" asp-for="Address" class="form-control" type="text" placeholder="Địa Chỉ" >
+                                </div>
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label" for="Phone">SĐT:<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <input id="Phone" asp-for="Phone" class="form-control" type="text" placeholder="Nhập số điện thoại" 
+                                           oninput='this.value=this.value.replace(/\D/g, "")'>
+                                </div>
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label" for="Email">Email:<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-envelope-square"></i>
+                                        </div>
+                                    </div>
+                                    <input id="Email" asp-for="Email" class="form-control" type="text" placeholder="Nhập email">
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-md-6">
+                            <div class="row pt-4">
+                                <div class="col-md-4 ">
+                                    <label class="control-label">Giới tính:</label>
+                                </div>
+                                <div class="col-md-3 form-check-inline ">
+                                    <label for="Male" class="control-label">
+                                        <input id="Male" asp-for="Gender" value="1" class="form-check-input" type="radio" checked>Nam
+                                    </label>
+                                </div>
+                                <div class="col-md-3 form-check-inline mr-auto">
+                                    <label for="Female" class="control-label">
+                                        <input id="Female" asp-for="Gender" value="0" class="form-check-input" type="radio">Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="control-group ">
+                                
+                                    <label class="control-label" for="Birthday">Ngày sinh:<span class="required">*</span></label>                             
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-birthday-cake"></i>
+                                            </div>
+                                        </div>
+                                        <input type="datetime" id="Birthday" asp-for="Birthday" autocomplete="off" class="form-control" data-toggle="datepicker">
+                                    </div>
+                                
+                                
+                                <span asp-validation-for="Birthday" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label" for="confirmsignup"></label>
+                                <div class="controls">
+                                    <button id="confirmsignup" name="confirmsignup" class="btn btn-success" type="submit">Đăng ký</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <!-- Password input-->
+                    <!-- Button -->
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+        
+</div>
+<script>
+
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

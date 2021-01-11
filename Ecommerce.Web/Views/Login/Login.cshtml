@@ -1,0 +1,73 @@
+﻿@model Ecommerce.Service.Dto.UserLoginDto
+<div class="row container-fluid mt-3">
+    <div class="col-md-12">
+        <form class="form-horizontal" asp-action="Login" asp-controller="Login" method="post" spellcheck="false">
+            <fieldset>
+                <!-- Sign Up Form -->
+                <!-- Text input-->
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <h2>Đăng nhập</h2>
+                        <hr />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="control-group">
+                            <label class="control-label" for="Username">Tên Đăng Nhập:</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                <input id="Username" asp-for="Username" class="form-control" type="text" placeholder="Nhập tên đăng nhập">
+                            </div>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="control-group">
+                            <label class="control-label" for="password">Mật khẩu:</label>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                </div>
+                                <input id="password" asp-for="Password" class="form-control" type="password" placeholder="Mật Khẩu từ 6 đến 32 ký tự" class="input-large">
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <div class="text-danger">@ViewBag.Message</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto" >
+                        <div class="control-group">
+                            <label class="control-label" for="confirmsignup"></label>
+                            <div class="controls">
+                                <button id="confirmsignup" name="confirmsignup" class="btn btn-success" type="submit">Đăng Nhập</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <!-- Password input-->
+                <!-- Button -->
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script>
+
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

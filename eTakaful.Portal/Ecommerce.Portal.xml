@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ecommerce.Portal</name>
+    </assembly>
+    <members>
+        <member name="M:Ecommerce.Portal.Controllers.CategoryController.GetCategories">
+            <summary>
+            Get all category items not condition
+            </summary>
+            <returns>list category</returns>
+        </member>
+    </members>
+</doc>

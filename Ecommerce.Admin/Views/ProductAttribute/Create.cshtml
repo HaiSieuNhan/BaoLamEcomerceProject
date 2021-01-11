@@ -1,0 +1,100 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.ProductAttributeModel.AddProductAttributeModel
+@{
+    ViewData["Title"] = "CreateProductAttribute";
+    Layout = null;
+}
+
+
+    <form asp-action="Create" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+        <input type="hidden" asp-for="@Model.AddProductAttributeViewModel.ProductId" value="@ViewBag.ProductId" />
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="@Model.AddProductAttributeViewModel.ProductColorId" class="control-label"></label>
+                        </div>
+                        <div class="col-md-6 mr-auto">
+                            <select asp-for="@Model.AddProductAttributeViewModel.ProductColorId">
+                                <option value="@null" selected>Không có</option>
+                                @foreach (var item in Model.ProductColors)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="@Model.AddProductAttributeViewModel.ProductSizeId" class="control-label"></label>
+                        </div>
+
+                        <div class="col-md-6 mr-auto">
+                            <select asp-for="@Model.AddProductAttributeViewModel.ProductSizeId">
+                                <option value="@null" selected>Không có</option>
+                                @foreach (var item in Model.ProductSizes)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label" asp-for="@Model.AddProductAttributeViewModel.Price"></label>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <div class="input-group">
+                        <input asp-for="@Model.AddProductAttributeViewModel.Price" type="text" class="form-control" data-type="currency" 
+                               oninput='this.value=this.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")'>
+                        <span asp-validation-for="@Model.AddProductAttributeViewModel.Price" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+                      
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label" asp-for="@Model.AddProductAttributeViewModel.DiscountPrice"></label>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <div class="input-group">
+                        <input asp-for="@Model.AddProductAttributeViewModel.DiscountPrice" type="text" class="form-control" data-type="currency" 
+                               oninput='this.value=this.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")'>
+                        <span asp-validation-for="@Model.AddProductAttributeViewModel.DiscountPrice" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label" asp-for="@Model.AddProductAttributeViewModel.CountStock"></label>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <div class="input-group">
+                        <input asp-for="@Model.AddProductAttributeViewModel.CountStock" type="text" class="form-control" data-type="quantity" 
+                               oninput='this.value=this.value.replace(/\D/g, "")'>
+                        <span asp-validation-for="@Model.AddProductAttributeViewModel.CountStock" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+    </form>
+
+
+
+

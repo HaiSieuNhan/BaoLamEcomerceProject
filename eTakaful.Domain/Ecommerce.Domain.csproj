@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190817081809_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190817081809_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191009092434_CreateProductTable.cs" />
+    <Compile Remove="Migrations\20191009092434_CreateProductTable.Designer.cs" />
+    <Compile Remove="Migrations\20191009093955_AddShortDescriptionInProduct.cs" />
+    <Compile Remove="Migrations\20191009093955_AddShortDescriptionInProduct.Designer.cs" />
+    <Compile Remove="Migrations\20191009105901_AddSkuInProduct.cs" />
+    <Compile Remove="Migrations\20191009105901_AddSkuInProduct.Designer.cs" />
+    <Compile Remove="Migrations\20191113084648_CreateCategoryTable.cs" />
+    <Compile Remove="Migrations\20191113084648_CreateCategoryTable.Designer.cs" />
+    <Compile Remove="Migrations\20191128102146_EditBaseModel.cs" />
+    <Compile Remove="Migrations\20191128102146_EditBaseModel.Designer.cs" />
+    <Compile Remove="Migrations\20191128163039_SetFieldUpdatedDateIsAllowNull.cs" />
+    <Compile Remove="Migrations\20191128163039_SetFieldUpdatedDateIsAllowNull.Designer.cs" />
+    <Compile Remove="Migrations\20191129131234_CreateProductTableAndMore.cs" />
+    <Compile Remove="Migrations\20191129131234_CreateProductTableAndMore.Designer.cs" />
+    <Compile Remove="Migrations\20191204120038_RemoveSomeTableNotUse.cs" />
+    <Compile Remove="Migrations\20191204120038_RemoveSomeTableNotUse.Designer.cs" />
+    <Compile Remove="Migrations\20191211124531_CreateUserTable.cs" />
+    <Compile Remove="Migrations\20191211124531_CreateUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20191213125209_CreateRoleTable.cs" />
+    <Compile Remove="Migrations\20191213125209_CreateRoleTable.Designer.cs" />
+    <Compile Remove="Migrations\20200703084812_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703084812_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200703085319_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703085319_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200703085731_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703085731_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200703090154_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703090154_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200703090653_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703090653_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200703100823_initShoeDB.cs" />
+    <Compile Remove="Migrations\20200703100823_initShoeDB.Designer.cs" />
+    <Compile Remove="Migrations\20200712114719_initDb01.cs" />
+    <Compile Remove="Migrations\20200712114719_initDb01.Designer.cs" />
+    <Compile Remove="Migrations\20200722040444_initDB01.cs" />
+    <Compile Remove="Migrations\20200722040444_initDB01.Designer.cs" />
+    <Compile Remove="Migrations\20200916111320_updateAllTable01.cs" />
+    <Compile Remove="Migrations\20200916111320_updateAllTable01.Designer.cs" />
+    <Compile Remove="Migrations\20200928161318_AddIgnoreSortField.cs" />
+    <Compile Remove="Migrations\20200928161318_AddIgnoreSortField.Designer.cs" />
+    <Compile Remove="Models\Nomination.cs" />
+    <Compile Remove="Models\Person.cs" />
+    <Compile Remove="Models\Policy.cs" />
+    <Compile Remove="Models\TakafulPlan.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcommerceCommon\EcommerceCommon.csproj" />
+  </ItemGroup>
+
+</Project>

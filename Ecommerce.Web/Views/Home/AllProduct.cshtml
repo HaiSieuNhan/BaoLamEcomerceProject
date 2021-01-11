@@ -1,0 +1,67 @@
+﻿@model Ecommerce.Service.ViewModels.Web.ProductList.GetListProduct
+@{
+    ViewData["Title"] = "list Page";
+}
+<div class="colorlib-product">
+    <div class="container">
+        <div class="tab-content">
+            <div class="tab-pane fade active" id="" role="tabpanel">
+                <div class="row ">
+                    @foreach (var item in Model.ProductAhihi)
+                    {
+                        if (item.ProductHomepageAttributeViewModel.Count != 0)
+                        {
+                            <div class="col-lg-3 text-left pb-5">
+                                <div class="product-entry border">
+                                    <div class="productimg">
+                                        <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                            <img src="~/images/@item.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                        </a>
+                                    </div>
+                                    @if (item.ProductHomepageAttributeViewModel.Count > 1)
+                                    {
+                                        <ul class=" product-image-color">
+                                            @foreach (var item2 in item.ProductHomepageAttributeViewModel)
+                                            {
+                                                <li>
+                                                    <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item2.Id})" id="@item2.Id">
+                                                        <img src="~/images/@item2.UrlImage" class="img-fluid" alt="@item.Name">
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    <div class="desc">
+                                        <h2 class="text-center product-title">
+                                            <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                @item.Name
+                                            </a>
+                                        </h2>
+                                        <span class="text-center price">
+                                            <del>
+                                                <span class="price-amount ">@item.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                            </del>
+                                            <ins>
+                                                <span class="price-amount ">
+                                                    @item.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                    @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                                </span>
+                                                <span class="percent deal">-@item.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                            </ins>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("Brand")
+<script src="~/js/jquery.min.js"></script>
+
+

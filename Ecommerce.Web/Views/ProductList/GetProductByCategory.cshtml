@@ -1,0 +1,247 @@
+﻿@model Ecommerce.Service.ViewModels.Web.ProductList.ProductListModel
+@{
+    ViewData["Title"] = "GetProductByCategoryLevel1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productPerPage = 2;
+    var productNumber = Model.ProductHomepage.Count();
+    var PageNumber = Math.Ceiling((double)(productNumber) / (double)(productPerPage));
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="bread">
+                    <span>
+                        <a asp-controller="Home" asp-action="Index">
+                            Trang chủ
+                        </a>
+                    </span>
+                    /
+                    <span>
+                        @Model.CategoryProductListViewModel.Name
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcrumbs-two">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="breadcrumbs-category">
+                    <img src="~/images/@Model.CategoryProductListViewModel.URLImage" />
+                </div>
+                <div class="menu text-center">
+                    <p>
+                        <a href="#">
+                            Hàng Mới
+                        </a>
+                        <a href="#">
+                            Bán Chạy
+                        </a>
+                        <a href="#">
+                            Giảm Giá Nhiều
+                        </a>
+                        <a href="#">
+                            Giá Thấp
+                        </a>
+                        <a href="#">
+                            Giá Cao
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="product-list">
+    <div class="container">
+        <div class="row">
+            <div class="product-list-left">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="side border mb-1">
+                            <h3>
+                                Danh Mục Sản Phẩm
+                            </h3>
+                            <ul>
+                                @if (Model.ListCategoryProductListViewModel.Count != 0)
+                                {
+                                    @foreach (var item in Model.ListCategoryProductListViewModel)
+                                    {
+                                        if (item.Id == Model.CategoryProductListViewModel.Id)
+                                        {
+                                            <li class="is-category">
+                                                <a asp-controller="ProductList" asp-action="GetProductByCategory" asp-route-id="@item.Id">
+                                                    @item.Name
+                                                    <span class="product-count">(@item.ProductCount)</span>
+                                                </a>
+                                            </li>
+                                            @if (item.CategoryChildren.Count != 0)
+                                            {
+                                                @foreach (var item1 in item.CategoryChildren)
+                                                {
+                                                    <li class="is-child">
+                                                        <a asp-controller="ProductList" asp-action="GetProductByCategory" asp-route-id="@item1.Id">
+                                                            @item1.Name
+                                                            <span class="product-count">(@item1.ProductCount)</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a asp-controller="ProductList" asp-action="GetProductByCategory" asp-route-id="@item.Id">
+                                                    @item.Name
+                                                    <span class="product-count">(@item.ProductCount)</span>
+                                                </a>
+                                            </li>
+                                            @if (item.CategoryChildren.Count != 0)
+                                            {
+                                                @foreach (var item1 in item.CategoryChildren)
+                                                {
+                                                    <li class="is-child">
+                                                        <a asp-controller="ProductList" asp-action="GetProductByCategory" asp-route-id="@item1.Id">
+                                                            @item1.Name
+                                                            <span class="product-count">(@item1.ProductCount)</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    @if (Model.ListProductSizeViewModel.Count != 0)
+                    {
+                        <div class="col-sm-12">
+                            <div class="side border mb-1">
+                                <h3>
+                                    Kích thước
+                                </h3>
+                                <div class="block-26 mb-2">
+                                    <ul>
+                                        @foreach (var item in Model.ListProductSizeViewModel)
+                                        {
+                                            <li><a href="#">@item.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ListProductColorViewModel.Count != 0)
+                    {
+                        <div class="col-sm-12">
+                            <div class="side border mb-1">
+                                <h3>
+                                    Màu sắc
+                                </h3>
+                                <ul>
+                                    @foreach (var item in Model.ListProductColorViewModel)
+                                    {
+                                        <li><a href="#">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+            <div class="product-list-right">
+                <div class="row row-pb-md paginate">
+                    @foreach (var item in Model.ProductHomepage)
+                    {
+                        if (Model.ProductHomepage.IndexOf(item) == productPerPage)
+                        {
+                            break;
+                        }
+                        if (item.ProductHomepageAttributeViewModel.Count != 0)
+                        {
+                            <div class="col-md-3 text-left pb-3 item-paginate">
+                                <div class="product-entry border">
+                                    <div class="productimg">
+                                        <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                            <img src="~/images/@item.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                        </a>
+                                    </div>
+                                    @if (item.ProductHomepageAttributeViewModel.Count > 1)
+                                    {
+                                        <ul class=" product-image-color">
+                                            @foreach (var item1 in item.ProductHomepageAttributeViewModel)
+                                            {
+                                                <li style="width:34px ; height:32px">
+                                                    <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.Id})" id="@item1.Id">
+                                                        <img src="~/images/@item1.UrlImage" class="img-fluid" alt="@item.Name" style="width:32px; height:32px;">
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    <div class="desc">
+                                        <h2 class="text-center product-title">
+                                            <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                @item.Name
+                                            </a>
+                                        </h2>
+                                        <span class="text-center price">
+                                            <del>
+                                                <span class="price-amount ">@item.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                            </del>
+                                            <ins>
+                                                <span class="price-amount ">
+                                                    @item.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                    @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                                </span>
+                                                <span class="percent deal">-@item.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                            </ins>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="Navigation__Wrapper-dgcpmq-0 kiFxlu" style="justify-content: flex-end;">
+                            @if (PageNumber > 1)
+                            {
+                                <li><a class="btnum prev"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40" style="vertical-align: middle;"><g><path d="m26.5 12.1q0 0.3-0.2 0.6l-8.8 8.7 8.8 8.8q0.2 0.2 0.2 0.5t-0.2 0.5l-1.1 1.1q-0.3 0.3-0.6 0.3t-0.5-0.3l-10.4-10.4q-0.2-0.2-0.2-0.5t0.2-0.5l10.4-10.4q0.3-0.2 0.5-0.2t0.6 0.2l1.1 1.1q0.2 0.2 0.2 0.5z"></path></g></svg></a></li>
+                                for (int i = 1; i <= PageNumber; i++)
+                                {
+                                    if (i == 1)
+                                    {
+                                        <li><a class="btnum active" data-attr="@i">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="btnum " data-attr="@i" onclick="paginate(this,@PageNumber,@productPerPage,'@Model.CategoryProductListViewModel.Id')">@i</a></li>
+                                    }
+                                }
+                                <li><a class="btnum next" onclick="paginate(this,@PageNumber,@productPerPage,'@Model.CategoryProductListViewModel.Id')"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40" style="vertical-align: middle;"><g><path d="m26.3 21.4q0 0.3-0.2 0.5l-10.4 10.4q-0.3 0.3-0.6 0.3t-0.5-0.3l-1.1-1.1q-0.2-0.2-0.2-0.5t0.2-0.5l8.8-8.8-8.8-8.7q-0.2-0.3-0.2-0.6t0.2-0.5l1.1-1.1q0.3-0.2 0.5-0.2t0.6 0.2l10.4 10.4q0.2 0.2 0.2 0.5z"></path></g></svg></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("Brand")
+

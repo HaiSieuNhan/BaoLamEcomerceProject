@@ -1,0 +1,300 @@
+﻿@model Ecommerce.Service.ViewModels.Web.Homepage.HomepageModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="slider-carousel">
+    <!-- Wrapper for slides -->
+    @foreach (var item in Model.CollectionHomepageViewModel)
+    {
+        <div class="item">
+            <div style="background-image: url(&quot;images/@item.UrlImage&quot;);height: 500px;background-size: cover;background-position: center center;background-repeat: no-repeat;"></div>
+            <div class="hero">
+                <button href="#" class="btn btn-hero btn-lg" role="button">@item.Name</button>
+            </div>
+        </div>
+    }
+    @foreach (var item in Model.CollectionHomepageViewModel)
+    {
+        <div class="item">
+            <div style="background-image: url(&quot;images/@item.UrlImage&quot;);height: 500px;background-size: cover;background-position: center center;background-repeat: no-repeat;"></div>
+            <div class="hero">
+                <button href="#" class="btn btn-hero btn-lg" role="button">@item.Name</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div class="colorlib-product">
+    <div class="container">
+        <div class="section-titel text-center">
+            <h3>
+                Sản phẩm được xem nhiều nhất
+            </h3>
+            <span class="view-all">
+                <a asp-controller="Home" asp-action="AllProduct">
+                    Xem Tất Cả
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
+                </a>
+            </span>
+        </div>
+        <div class="row">
+            <div id="hot-carousel" class="col-lg-12">
+                @foreach (var item in Model.ProductHomepage)
+                {
+                    
+                    if (item.ProductHomepageAttributeViewModel.Count != 0)
+                    {
+                        <div class="col-md-12 text-left pb-5">
+                            <div class="product-entry border">
+                                <div class="productimg">
+                                    <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                        <img src="~/images/@item.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                    </a>
+                                </div>
+                                @if (item.ProductHomepageAttributeViewModel.Count > 1)
+                                {
+                                    <ul class=" product-image-color">
+                                        @foreach (var item1 in item.ProductHomepageAttributeViewModel)
+                                        {
+                                            <li>
+                                                <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.Id})" id="@item1.Id">
+                                                    <img src="~/images/@item1.UrlImage" class="img-fluid" alt="@item.Name">
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                <div class="desc">
+                                    <h2 class="text-center product-title">
+                                        <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                            @item.Name
+                                        </a>
+                                    </h2>
+                                    <span class="text-center price">
+                                        <del>
+                                            <span class="price-amount ">@item.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                        </del>
+                                        <ins>
+                                            <span class="price-amount ">
+                                                @item.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                            </span>
+                                            <span class="percent deal">-@item.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                        </ins>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+                @foreach (var item in Model.ProductHomepage)
+                {
+                    if (item.ProductHomepageAttributeViewModel.Count != 0)
+                    {
+                        <div class="col-md-12 text-left pb-5">
+                            <div class="product-entry border">
+                                <div class="productimg">
+                                    <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                        <img src="~/images/@item.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                    </a>
+                                </div>
+                                @if (item.ProductHomepageAttributeViewModel.Count > 1)
+                                {
+                                    <ul class=" product-image-color">
+                                        @foreach (var item1 in item.ProductHomepageAttributeViewModel)
+                                        {
+                                            <li>
+                                                <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.Id})" id="@item1.Id">
+                                                    <img src="~/images/@item1.UrlImage" class="img-fluid" alt="@item.Name">
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                <div class="desc">
+                                    <h2 class="text-center product-title">
+                                        <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                            @item.Name
+                                        </a>
+                                    </h2>
+                                    <span class="text-center price">
+                                        <del>
+                                            <span class="price-amount ">@item.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                        </del>
+                                        <ins>
+                                            <span class="price-amount ">
+                                                @item.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                            </span>
+                                            <span class="percent deal">-@item.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                        </ins>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="section-titel text-center">
+            <h3>Bộ sưu tập sản phẩm hot</h3>
+            <span class="view-all">
+                <a asp-controller="Home" asp-action="AllProduct">
+                    Xem Tất Cả
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
+                </a>
+            </span>
+        </div>
+        <div class="featured-tab">
+            <ul class="text-center nav nav-tabs" role="tablist">
+                @foreach (var item in Model.CollectionViewModel)
+                {
+                    @if (Model.CollectionViewModel.IndexOf(item) == 0)
+                    {
+                        <li class="nav-item "><a class="active" data-toggle="tab" href="#@item.Id" role="tab">@item.Name</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item "><a data-toggle="tab" href="#@item.Id" role="tab">@item.Name</a></li>
+                    }
+                }
+
+
+            </ul>
+        </div>
+        <div class="tab-content">
+            @foreach (var item in Model.CollectionViewModel)
+            {
+                @if (Model.CollectionViewModel.IndexOf(item) == 0)
+                {
+                    <div class="tab-pane fade active" id="@item.Id" role="tabpanel">
+                        <div class="row ">
+                            @foreach (var item1 in item.ListProductHomepageViewModel)
+                            {
+                                if (item1.ProductHomepageAttributeViewModel.Count != 0)
+                                {
+                                    <div class="col-lg-3 text-left pb-5">
+                                        <div class="product-entry border">
+                                            <div class="productimg">
+                                                <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                    <img src="~/images/@item1.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                                </a>
+                                            </div>
+                                            @if (item1.ProductHomepageAttributeViewModel.Count > 1)
+                                            {
+                                                <ul class=" product-image-color">
+                                                    @foreach (var item2 in item1.ProductHomepageAttributeViewModel)
+                                                    {
+                                                        <li>
+                                                            <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item2.Id})" id="@item2.Id">
+                                                                <img src="~/images/@item2.UrlImage" class="img-fluid" alt="@item1.Name">
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            <div class="desc">
+                                                <h2 class="text-center product-title">
+                                                    <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                        @item1.Name
+                                                    </a>
+                                                </h2>
+                                                <span class="text-center price">
+                                                    <del>
+                                                        <span class="price-amount ">@item1.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                                    </del>
+                                                    <ins>
+                                                        <span class="price-amount ">
+                                                            @item1.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                            @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                                        </span>
+                                                        <span class="percent deal">-@item1.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                                    </ins>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="tab-pane fade " id="@item.Id" role="tabpanel">
+                        <div class="row ">
+                            @foreach (var item1 in item.ListProductHomepageViewModel)
+                            {
+                                if (item1.ProductHomepageAttributeViewModel.Count != 0)
+                                {
+                                    <div class="col-lg-3 text-left pb-5">
+                                        <div class="product-entry border">
+                                            <div class="productimg">
+                                                <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                    <img src="~/images/@item1.ProductHomepageAttributeViewModel[0].UrlImage" class="img-fluid" alt="@item.Name">
+                                                </a>
+                                            </div>
+                                            @if (item1.ProductHomepageAttributeViewModel.Count > 1)
+                                            {
+                                                <ul class=" product-image-color">
+                                                    @foreach (var item2 in item1.ProductHomepageAttributeViewModel)
+                                                    {
+                                                        <li>
+                                                            <a class="prod-img color" href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item2.Id})" id="@item2.Id">
+                                                                <img src="~/images/@item2.UrlImage" class="img-fluid" alt="@item1.Name">
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            <div class="desc">
+                                                <h2 class="text-center product-title">
+                                                    <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item1.ProductHomepageAttributeViewModel[0].Id})" class="prod-img">
+                                                        @item1.Name
+                                                    </a>
+                                                </h2>
+                                                <span class="text-center price">
+                                                    <del>
+                                                        <span class="price-amount ">@item1.ProductHomepageAttributeViewModel[0].Price₫</span>
+                                                    </del>
+                                                    <ins>
+                                                        <span class="price-amount ">
+                                                            @item1.ProductHomepageAttributeViewModel[0].PriceSale₫
+                                                            @*<span class="sale-tag ">-@Math.Round(((1 - @item.PriceSale / @item.Price) * 100), 0)%</span>*@
+                                                        </span>
+                                                        <span class="percent deal">-@item1.ProductHomepageAttributeViewModel[0].PercentSale%</span>
+                                                    </ins>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+                    <a asp-controller="Home" asp-action="AllProduct" class="btn btn-primary btn-lg">
+                        Xem tất cả sản phẩm
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("Brand")
+<script src="~/js/jquery.min.js"></script>
+
+

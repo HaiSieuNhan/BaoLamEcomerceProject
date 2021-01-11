@@ -1,0 +1,175 @@
+﻿@model EcommerceCommon.Infrastructure.ViewModel.Web.CartViewModel
+@using Microsoft.AspNetCore.Http;
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="bread"><span><a href="index.html">Trang chủ</a></span> /<span> Giỏ hàng</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    @if (Model.CartDetailViewModels.Count != 0)
+    {
+        <div class="colorlib-product">
+            <div class="container">
+                <div class="row row-pb-lg order-progress">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="process-wrap">
+                            <div class="process text-center active">
+                                <p><span>01</span></p>
+                                <h3>Giỏ hàng</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span>02</span></p>
+                                <h3>Thủ tục thanh toán</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span>03</span></p>
+                                <h3>Hoàn thành đơn hàng</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-pb-lg">
+                    <div class="col-md-12">
+                        <div class="product-name d-flex">
+                            <div class="one-forth text-left px-4">
+                                <span>Thông tin chi tiết sản phẩm</span>
+                            </div>
+                            <div class="one-eight text-center">
+                                <span>Giá bán</span>
+                            </div>
+                            <div class="one-eight text-center">
+                                <span>Số lượng</span>
+                            </div>
+                            <div class="one-eight text-center px-4">
+                                <span>Xóa</span>
+                            </div>
+                        </div>
+                        @foreach (var item in Model.CartDetailViewModels)
+                        {
+                            <div class="product-cart d-flex">
+                                <div class="one-forth">
+
+                                    <div class="display-tc" style="width:100px">
+                                        <div class="img-cart">
+                                            <img src="~/images/@item.ProductImage" alt="@item.ProductName" />
+                                        </div>
+                                    </div>
+                                    <div class="display-tc">
+                                        <h3>
+                                            <a href="@Url.Action("GetProductDetail","ProductDetail",new { ProductAttributeId = item.ProductAttributeId})">
+                                                @(item.ProductName)
+                                                @if (item.ProductColor != null)
+                                                {
+                                                    <span>,Màu @item.ProductColor</span>
+                                                }
+                                                @if (item.ProductSize != null)
+                                                {
+                                                    <span>,Kích cỡ @item.ProductSize</span>
+                                                }
+                                            </a>
+                                            
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+                                        <span class="discount-price">@(item.DiscountPrice)₫</span>
+                                        <del class="price">@(item.Price)₫ </del>
+
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+                                        <input type="text" id="quantity" name="quantity" class="form-control input-number text-center"
+                                               oninput='this.value=this.value.replace(/\D/g, "")' onchange='updateCart("@item.Id", this.value,this)' value="@item.Quantity">
+                                    </div>
+                                </div>
+                                <div class="one-eight text-center">
+                                    <div class="display-tc">
+                                        <a onclick='deleteCart("@item.Id", this)' class="closed"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+                <div class="row row-pb-lg">
+                    <div class="col-md-12">
+                        <div class="total-wrap">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <form asp-action="ApplyCoupon" asp-controller="Cart" onsubmit="return applyCoupon(this);" autocomplete="off">
+                                        <div class="row form-group">
+                                            <div class="col-md-9">
+                                                <input type="text" name="CodeName" class="form-control input-number" placeholder="Số phiếu giảm giá của bạn ...">
+                                            </div>
+                                            <div class="col-md-3" style="float:none">
+                                                <input type="submit" value="Áp dụng phiếu giảm giá" class="btn btn-primary">
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="total">
+                                                <div class="sub">
+                                                    <p><span>Tổng phụ:</span> <span id="NotionalPrice">@(Model.NotionalPrice)₫</span></p>
+                                                    @if (Model.DiscountPrice != "0")
+                                                    {
+                                                        <p id="discount-price">
+                                                            <span>Giảm giá:</span>
+                                                            <span>
+                                                                @(Model.DiscountPrice)₫
+                                                            </span>
+                                                        </p>
+                                                    }
+
+                                                </div>
+                                                <div class="grand-total">
+                                                    <p><span><strong>Toàn bộ:</strong></span> <span id="TotalPrice">@(Model.TotalPrice)₫</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 checkout-btn">
+                                            <a asp-controller="CheckOut" asp-action="CheckOut"  class="btn btn-primary">Thanh toán</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="bar-error">
+        </div>
+    }
+    else
+    {
+        <div class="empty">
+            <p class="empty-note">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Tiếp tục mua sắm</a>
+        </div>
+    }
+
+}
+else
+{
+    <div class="empty">
+        <p class="empty-note">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Tiếp tục mua sắm</a>
+    </div>
+}

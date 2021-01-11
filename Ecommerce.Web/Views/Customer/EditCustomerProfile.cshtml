@@ -1,0 +1,86 @@
+﻿@model Ecommerce.Service.ViewModels.Web.Customer.CustomerProfileViewModel
+@using EcommerceCommon.Infrastructure.Enums
+
+    <div class="container">
+        @await Html.PartialAsync("_CustomerBread")
+        <div class="row">
+            <div class="col-md-3">
+                @await Html.PartialAsync("_CustomerAside")
+            </div>
+            <div class="col-md-9 customer-profile">
+                <div class="heading">Thông tin tài khoản</div>
+                <div class="account-info">
+                    <form asp-action="EditCustomerProfile" asp-controller="Customer" onsubmit="return updateProfile(this)" method="post" spellcheck="false">
+                        <div class="form-control ">
+                            <label class="input-label">Họ tên</label>
+                            <div>
+                                <input type="text" asp-for="Name" oninput='this.value=this.value.replace(/\d/g, "")' maxlength="128" class="account-input">
+                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                            </div>
+                            
+
+                        </div>
+                        <div class="form-control ">
+                            <label class="input-label">Số điện thoại</label>
+                            <div>
+                                <input type="text" asp-for="Phone" oninput='this.value=this.value.replace(/\D/g, "")' placeholder="Hãy nhập SĐT để trải nghiệm tốt hơn" class="account-input">
+                                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                            </div>
+                            
+
+                        </div>
+                        <div class="form-control ">
+                            <label class="input-label">Địa chỉ</label>
+                            <div>
+                                <input type="text" asp-for="Address" maxlength="256" class="account-input" >
+                            </div>
+                            <span asp-validation-for="@Model.Address" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-control">
+                            <label class="input-label">Email</label>
+                            <input type="text" asp-for="Email" disabled="" class="Input-sc-17i9bto-0 bYlDgr" >
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-control">
+                            <label class="input-label">Giới tính</label>
+                            <label class="input-radio">
+                                @if (Model.Gender == Gender.Male)
+                                {
+                                    <input type="radio" asp-for="Gender" value="@Gender.Male" checked>
+                                }
+                                else
+                                {
+                                    <input type="radio" asp-for="Gender" value="@Gender.Male">
+                                }
+
+                                <span class="label">Nam</span>
+                            </label>
+                            <label class="input-radio">
+                                @if (Model.Gender == Gender.Female)
+                                {
+                                    <input type="radio" asp-for="Gender" value="@Gender.Female" checked>
+                                }
+                                else
+                                {
+                                    <input type="radio" asp-for="Gender" value="@Gender.Female">
+                                }
+                                <span class="label">Nữ</span>
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="input-label">Ngày sinh</label>
+                            <input type="text" asp-for="@Model.Birthday" autocomplete="off" data-toggle="datepicker" data-val="true" data-val-required="Vui lòng nhập chọn ngày sinh" aria-describedby="Birthday-error" aria-invalid="false">
+                            <span asp-validation-for="@Model.Birthday" class="text-danger"></span>
+                        </div>
+                        <div class="form-control">
+                            <label class="input-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>

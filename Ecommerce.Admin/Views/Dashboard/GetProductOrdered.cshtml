@@ -1,0 +1,82 @@
+﻿@model List<EcommerceCommon.Infrastructure.ViewModel.Admin.ProductOrderedAdminViewModel>
+@{
+    var stt = 1;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sản phẩm bán ra</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm bán ra</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:400px !important">Thông tin sản phẩm</th>
+                                        <th style="width:60px !important">Số lượng bán ra</th>
+                                        <th style="width:100px !important">Tổng doanh thu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td >
+                                                <div class="product-item">
+                                                    <img src="~/images/@item.ProductImage" alt="@item.ProductName" />
+                                                    <div class="product-info">
+                                                        @item.ProductName
+                                                        @if (item.ProductColor != null)
+                                                        {
+                                                            @(" ,Màu " + item.ProductColor + " ")
+                                                        }
+                                                        @if (item.ProductSize != null)
+                                                        {
+                                                            @(",Cỡ " + item.ProductSize + " ")
+                                                        }
+                                                    </div>
+                                                    
+                                                </div>
+                                                   
+                                            </td>
+                                            <td>@item.Quantity</td>
+                                            <td>@(item.TotalPrice)đ</td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

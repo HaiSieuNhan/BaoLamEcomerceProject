@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWeb.Admin", "ShoeWeb\ShoeWeb.Admin.csproj", "{8A502899-4FAF-4A22-BA92-2E0900F789F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWeb.Domain", "ShoeWeb.Domain\ShoeWeb.Domain.csproj", "{2B70E9A6-61C5-400E-A114-431E44E0B8A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWeb.Portal", "ShoeWeb.Portal\ShoeWeb.Portal.csproj", "{FFB1993D-C89E-4530-875C-870994748574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWeb.Repository", "ShoeWeb.Repository\ShoeWeb.Repository.csproj", "{E567C2A1-F7FE-4DB9-AFDA-1165049BDE85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWeb.Service", "ShoeWeb.Service\ShoeWeb.Service.csproj", "{D383A364-CC08-45EC-94ED-273360B13DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeWebCommon", "ShoeWeb.Common\ShoeWebCommon.csproj", "{8C51106A-979F-4603-8924-369246A40096}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A502899-4FAF-4A22-BA92-2E0900F789F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A502899-4FAF-4A22-BA92-2E0900F789F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A502899-4FAF-4A22-BA92-2E0900F789F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A502899-4FAF-4A22-BA92-2E0900F789F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B70E9A6-61C5-400E-A114-431E44E0B8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B70E9A6-61C5-400E-A114-431E44E0B8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B70E9A6-61C5-400E-A114-431E44E0B8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B70E9A6-61C5-400E-A114-431E44E0B8A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB1993D-C89E-4530-875C-870994748574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB1993D-C89E-4530-875C-870994748574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB1993D-C89E-4530-875C-870994748574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB1993D-C89E-4530-875C-870994748574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E567C2A1-F7FE-4DB9-AFDA-1165049BDE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E567C2A1-F7FE-4DB9-AFDA-1165049BDE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E567C2A1-F7FE-4DB9-AFDA-1165049BDE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E567C2A1-F7FE-4DB9-AFDA-1165049BDE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D383A364-CC08-45EC-94ED-273360B13DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D383A364-CC08-45EC-94ED-273360B13DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D383A364-CC08-45EC-94ED-273360B13DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D383A364-CC08-45EC-94ED-273360B13DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C51106A-979F-4603-8924-369246A40096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C51106A-979F-4603-8924-369246A40096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C51106A-979F-4603-8924-369246A40096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C51106A-979F-4603-8924-369246A40096}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B84A7036-FEAF-4B1F-90F4-B572BF0DAA25}
+	EndGlobalSection
+EndGlobal

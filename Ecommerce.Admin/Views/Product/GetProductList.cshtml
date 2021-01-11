@@ -1,0 +1,104 @@
+﻿@model List<EcommerceCommon.Infrastructure.ViewModel.Admin.ProductAdminViewModel>
+@using EcommerceCommon.Infrastructure.Enums
+@{
+    ViewData["Title"] = "GetProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var stt = 1;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sản phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <a asp-action="Create" asp-controller="Product" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i>Thêm mới</a>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:150px !important"> Tên Sản Phẩm </th>
+                                        <th style="width:80px !important"> Ngày bán </th>
+                                        <th style="width:60px !important"> Lượt xem </th>
+                                        <th style="width:60px !important"> Trạng thái </th>
+                                        <th style="width:80px !important"> Nhà sản xuất </th>
+                                        <th style="width:80px !important"> Nhà cung cấp </th>
+                                        <th style="width:210px !important"> Chức năng </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><p class="paragraph"> @item.Name </p></td>
+                                            <td>@item.PublicationDate.ToString("dd/MM/yyyy")</td>
+                                            <td> @item.View </td>
+                                            @if (item.ProductStatus == ProductStatus.New)
+                                            {
+                                                <td> Mới</td>
+                                            }
+                                            else if(item.ProductStatus == ProductStatus.Available)
+                                            {
+                                                <td>Còn hàng</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Hết hàng</td>
+                                            }
+                                            <td> @item.ManufacturerName </td>
+                                            <td>@item.SupplierName </td>
+                                            <td >
+                                                <a onclick="showInPopup('@Url.Action("Detail","Product",new { Id =item.Id},Context.Request.Scheme)','Chi tiết sản phẩm')" class="btn btn-success text-white" title="Chi tiết sản phẩm"><i class="fas fa-search"></i></a>
+                                                <a asp-action="Edit" asp-controller="Product" asp-route-Id="@item.Id" class="btn btn-primary text-white" title="Cập nhật sản phẩm"><i class="fas fa-random"></i></a>
+                                                <a asp-action="GetProductAttributeList" asp-controller="ProductAttribute" asp-route-Id="@item.Id" class="btn btn-secondary text-white" title="Thuộc tính sản phẩm"><i class="fas fa-dna"></i></a>
+                                                <a asp-action="GetProductImageList" asp-controller="ProductImage" asp-route-Id="@item.Id" class="btn btn-secondary text-white" title="Ảnh sản phẩm"><i class="fas fa-image"></i></a>
+                                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                                    <button type="submit" value="Xóa" class="btn btn-danger" title="Xóa sản phẩm">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+

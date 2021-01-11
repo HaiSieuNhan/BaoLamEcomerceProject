@@ -1,0 +1,83 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.SupplierModel.EditSupplierViewModel;
+@{
+    ViewData["Title"] = "EditSupplier";
+    Layout = null;
+}
+
+
+<form asp-action="Edit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.Name"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-address-card"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.Name" class="form-control" placeholder="Nhập họ tên">
+        </div>
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.CodeName"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-address-card"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.CodeName" class="form-control" placeholder="Nhập mã nhà sản xuất">
+        </div>
+        <span asp-validation-for="@Model.CodeName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.Email"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.Email" class="form-control" placeholder="Nhập mô tả">
+        </div>
+        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.Phone"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-house-damage"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.Phone" class="form-control" placeholder="Nhập trang website nhà sản xuất">
+        </div>
+        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.Fax"></label>
+        <div class="input-group">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-house-damage"></i>
+                </div>
+            </div>
+            <input asp-for="@Model.Fax" class="form-control" placeholder="Nhập trang website nhà sản xuất">
+        </div>
+        <span asp-validation-for="@Model.Fax" class="text-danger"></span>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </div>
+</form>
+
+
+
+

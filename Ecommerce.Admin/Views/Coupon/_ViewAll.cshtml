@@ -1,0 +1,84 @@
+﻿@model IList<EcommerceCommon.Infrastructure.ViewModel.Admin.CouponAdminViewModel>
+@{
+    var stt = 1;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Mã giảm giá</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Mã giảm giá</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <a onclick="showInPopup('@Url.Action("Create","Coupon",null,Context.Request.Scheme)','Tạo mới mã giảm giá')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i>Thêm mới</a>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:100px !important"> Mã giảm giá </th>
+                                        <th style="width:100px !important"> Số tiền giảm </th>
+                                        <th style="width:100px !important"> Lượt áp dụng </th>
+                                        <th style="width:120px !important"> Danh mục áp dụng</th>
+                                        <th style="width:120px !important"> Bộ sưu tập áp dụng</th>
+                                        <th style="width:80px !important"> Chức năng </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td> @item.Name </td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.NumberApply</td>
+                                        <td>@item.CategoryName</td>
+                                        <td>@item.CollectionName</td>
+                                        <td>
+                                            <a onclick="showInPopup('@Url.Action("Edit","Coupon",new { id =item.Id},Context.Request.Scheme)','Sửa Coupon')" class="btn btn-info text-white "><i class="fas fa-random"></i></a>
+                                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                                <button type="submit" value="Xóa" class="btn btn-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    }
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+

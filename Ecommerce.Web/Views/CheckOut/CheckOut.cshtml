@@ -1,0 +1,195 @@
+﻿@model EcommerceCommon.Infrastructure.ViewModel.Web.CheckOutViewModel
+@using Ecommerce.Domain.Models
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="bread">
+                    <span>
+                        <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    </span>/
+                    <span>Thanh toán</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row row-pb-lg">
+            <div class="col-sm-10 offset-md-1">
+                <div class="process-wrap">
+                    <div class="process text-center active">
+                        <p>
+                            <span>01</span>
+                        </p>
+                        <h3>Giỏ hàng</h3>
+                    </div>
+                    <div class="process text-center active">
+                        <p>
+                            <span>02</span>
+                        </p>
+                        <h3>Thủ tục thanh toán</h3>
+                    </div>
+                    <div class="process text-center">
+                        <p>
+                            <span>03</span>
+                        </p>
+                        <h3>Hoàn thành đơn hàng</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form asp-action="CheckOut" asp-controller="CheckOut" method="post" spellcheck="false">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row colorlib-form">
+                        <div class="col-md-12">
+                            <h2>
+                                Chi tiết thanh toán
+                            </h2>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="@Model.CheckOutInfoViewModel.Name" class="control-label">Họ Tên<span class="required">*</span></label>
+                                <input type="text" asp-for="@Model.CheckOutInfoViewModel.Name" class="form-control" placeholder="Nhập họ tên"
+                                       oninput='this.value=this.value.replace(/\d/g, "")'>
+                                <span asp-validation-for="@Model.CheckOutInfoViewModel.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="@Model.CheckOutInfoViewModel.Phone" class="control-label">Số điện thoại<span class="required">*</span></label>
+                                <input type="text" asp-for="@Model.CheckOutInfoViewModel.Phone" class="form-control" placeholder="Nhập số điện thoại của bạn"
+                                       oninput='this.value=this.value.replace(/\D/g, "")'>
+                                <span asp-validation-for="@Model.CheckOutInfoViewModel.Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="@Model.CheckOutInfoViewModel.Address" class="control-label">Địa chỉ giao hàng<span class="required">*</span></label>
+                                <input type="text" asp-for="@Model.CheckOutInfoViewModel.Address" class="form-control" placeholder="Nhập địa chỉ giao hàng">
+                                <span asp-validation-for="@Model.CheckOutInfoViewModel.Address" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="payment-method">
+                            <h2>Phương thức thanh toán</h2>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="@Model.CheckOutInfoViewModel.PaymentMethod" value="@PaymentMethod.CheckPayment" checked>
+                                            Thanh toán khi nhận hàng
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="@Model.CheckOutInfoViewModel.PaymentMethod" value="@PaymentMethod.BankTransfer">
+                                            Chuyển khoản ngân hàng
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="cart-detail">
+                                @if (Model.CartViewModel != null)
+                                {
+                                    @if (Model.CartViewModel.CartDetailViewModels.Count != 0)
+                                    {
+                                        <h2>Đơn hàng <span> (@Model.CartViewModel.CartDetailViewModels.Count sản phẩm)</span></h2>
+                                        @foreach (var item in Model.CartViewModel.CartDetailViewModels)
+                                        {
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        @item.Quantity x @item.ProductName
+                                                        @if (item.ProductColor != null)
+                                                        {
+                                                            @(",Màu " + item.ProductColor + " ")
+                                                        }
+                                                        @if (item.ProductSize != null)
+                                                        {
+                                                            @(",Kích cỡ " + item.ProductSize + " ")
+                                                        }
+                                                    </span>
+                                                    <span>@(item.DiscountPrice)đ</span>
+                                                </li>
+                                            </ul>
+                                        }
+                                        <ul>
+                                            <li>
+                                                <span>Tạm tính</span>
+                                                <span>@(Model.CartViewModel.NotionalPrice)đ</span>
+                                            </li>
+                                            @if (Model.CartViewModel.DiscountPrice != "0")
+                                            {
+                                                <li>
+                                                    <span> Giảm giá </span>
+                                                    <span>@(Model.CartViewModel.DiscountPrice)đ</span>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <ul class="total-amount">
+                                            <li>
+                                                <span>Thành tiền</span>
+                                                <span>@(Model.CartViewModel.TotalPrice)đ</span>
+                                            </li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <h2>Đơn hàng <span> (0 sản phẩm)</span></h2>
+                                        <ul class="total-amount">
+                                            <li>
+                                                <span>Thành tiền</span>
+                                                <span>0đ</span>
+                                            </li>
+                                        </ul>
+                                    }
+                                }
+                                else
+                                {
+                                    <h2>Đơn hàng <span> (0 sản phẩm)</span></h2>
+                                    <ul class="total-amount">
+                                        <li>
+                                            <span>Thành tiền</span>
+                                            <span>0đ</span>
+                                        </li>
+                                    </ul>
+                                }
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>
+                                <button type="submit" class="btn btn-primary">Đặt hàng</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

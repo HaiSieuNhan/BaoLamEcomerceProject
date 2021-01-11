@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Http;
+<div class="account-avatar">
+    <img src="~/images/default.png" />
+    <div class="info">
+        Tài khoản của
+        <strong>@Context.Session.GetString("customerName")</strong>
+    </div>
+</div>
+<ul class="account-nav">
+    <li>
+        <a asp-action="EditCustomerProfile" asp-controller="Customer" >
+            <i class="nav-icon fas fa-user"></i>
+            Thông tin tài khoản
+        </a>
+    </li>
+    <li>
+        <a asp-action="GetOrderHistory" asp-controller="Customer">
+            <i class="nav-icon fas fa-scroll"></i>
+            Quản lý đơn hàng
+        </a>
+    </li>
+</ul>

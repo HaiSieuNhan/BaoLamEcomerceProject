@@ -1,0 +1,93 @@
+﻿@model List<EcommerceCommon.Infrastructure.ViewModel.Admin.StaffAdminViewModel>
+@using EcommerceCommon.Infrastructure.Enums
+@{ 
+    var stt = 1;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Nhân viên</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Nhân viên</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <a onclick="showInPopup('@Url.Action("Create","Staff",null,Context.Request.Scheme)','Tạo mới nhân viên')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i>Thêm mới</a>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body ">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px !important"> STT </th>
+                                        <th style="width:100px !important"> Tên nhân viên </th>
+                                        <th style="width:60px !important"> Giới tính </th>
+                                        <th style="width:80px !important"> Địa chỉ </th>
+                                        <th style="width:60px !important"> Ngày sinh </th>
+                                        <th style="width:60px !important"> Số điện thoại </th>
+                                        <th style="width:80px !important"> Ảnh Avatar </th>
+                                        <th style="width:60px !important"> Chức năng </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@stt</td>
+                                        <td>@item.Name </td>
+                                        @if (item.Gender == Gender.Male)
+                                        {
+                                            <td> Nam</td>
+                                        }
+                                        else
+                                        {
+                                            <td> Nữ</td>
+                                        }
+                                        <td>@item.Address</td>
+                                        <td>@item.Birthday </td>
+                                        <td>@item.Phone </td>
+                                        <td><img src="~/images/@item.AvatarUrl" class="small-img"></td>
+                                        <td>
+                                            <a onclick="showInPopup('@Url.Action("Edit","Staff",new { id =item.UserProfileId},Context.Request.Scheme)','Cập nhật nhân viên')" title="Cập nhật nhân viên" class="btn btn-primary text-white "><i class="fas fa-random"></i></a>
+                                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                                <button type="submit" title="Xóa nhân viên" class="btn btn-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                        stt++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

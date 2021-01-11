@@ -1,0 +1,128 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.CouponModel.EditCouponModel;
+@{
+    ViewData["Title"] = "EditCoupon";
+    Layout = null;
+}
+
+
+    <form asp-action="Edit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" asp-for="@Model.EditCouponViewModel.Id " />
+
+
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.EditCouponViewModel.Name"></label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                </div>
+                <input asp-for="@Model.EditCouponViewModel.Name" class="form-control" placeholder="Nhập mã giảm giá">
+                <span asp-validation-for="@Model.EditCouponViewModel.Name" class="text-danger"></span>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.EditCouponViewModel.Amount"></label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <input type="text" asp-for="@Model.EditCouponViewModel.Amount" class="form-control" placeholder="Nhập số tiền"
+                       oninput='this.value=this.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")'>
+                <span asp-validation-for="@Model.EditCouponViewModel.Amount" class="text-danger"></span>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.EditCouponViewModel.NumberApply"></label>
+            <div class="input-group">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                </div>
+                <input type="text" oninput='this.value=this.value.replace(/\D/g, "")' asp-for="@Model.EditCouponViewModel.NumberApply" class="form-control" placeholder="Nhập số lượng">
+                <span asp-validation-for="@Model.EditCouponViewModel.NumberApply" class="text-danger"></span>
+            </div>
+            
+        </div>
+     
+
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" asp-for="@Model.EditCouponViewModel.StartTime"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="datetime" asp-for="@Model.EditCouponViewModel.StartTime" class="form-control" placeholder="Nhập ngày bắt đầu" data-toggle="datepicker">
+                            <span asp-validation-for="@Model.EditCouponViewModel.StartTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" asp-for="@Model.EditCouponViewModel.EndTime"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="datetime" asp-for="@Model.EditCouponViewModel.EndTime" class="form-control" placeholder="Nhập ngày kết thúc" data-toggle="datepicker">
+                            <span asp-validation-for="@Model.EditCouponViewModel.EndTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" asp-for="@Model.EditCouponViewModel.CollectionId"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="@Model.EditCouponViewModel.CollectionId" id="CollectionId">
+                                <option value="@null" selected>Không có</option>
+                                @foreach (var item in Model.CollectionList)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" asp-for="@Model.EditCouponViewModel.CategoryId"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="@Model.EditCouponViewModel.CategoryId" id="CategoryId">
+                                <option value="@null" selected>Không có</option>
+                                @foreach (var item in Model.CategoryList)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+               
+
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu lại</button>
+                </div>
+    </form>
+

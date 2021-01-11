@@ -1,0 +1,12 @@
+﻿@model IList<EcommerceCommon.Infrastructure.ViewModel.Admin.CouponAdminViewModel>
+@{
+    ViewData["Title"] = "GetCategoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+
+

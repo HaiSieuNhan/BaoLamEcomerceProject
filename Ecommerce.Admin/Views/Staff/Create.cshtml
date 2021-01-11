@@ -1,0 +1,131 @@
+﻿@model Ecommerce.Service.Dto.UserDto
+@{
+    ViewData["Title"] = "CreateStaff";
+    Layout = null;
+}
+
+
+    <form asp-action="Create" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-10 mr-auto">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="@Model.Name" class="control-label"></label>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" asp-for="@Model.Name" oninput='this.value=this.value.replace(/\d/g, "")' class="form-control" placeholder="Nhập họ tên" />
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-10 mr-auto">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="@Model.Username" class="control-label"></label>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" asp-for="@Model.Username" class="form-control" placeholder="Nhập tên người dùng" />
+                            <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                            <span class="text-danger">@ViewBag.Message</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-10 mr-auto">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="@Model.Password" class="control-label"></label>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" asp-for="@Model.Password" class="form-control" placeholder="Nhập mật khẩu" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-6 mr-auto">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="@Model.Email" class="control-label"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="email" asp-for="@Model.Email" class="form-control" placeholder="Nhập email" />
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="@Model.Phone" class="control-label"></label>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" asp-for="@Model.Phone" class="form-control" oninput='this.value=this.value.replace(/\D/g, "")' placeholder="Nhập số điện thoại" />
+                            <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="row">
+                <div class="col-md-6 mr-auto">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="@Model.Birthday" class="control-label"></label>
+                            <span class="required">*</span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="datetime" asp-for="@Model.Birthday" class="form-control" data-toggle="datepicker"  placeholder="Nhập ngày sinh">
+                            <span asp-validation-for="@Model.Birthday" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <label asp-for="@Model.Gender" class="control-label"></label>
+                            
+                        </div>
+                        <div class="col-md-3 form-check-inline ">
+                            <label for="Male" class="control-label">
+                                <input id="Male" asp-for="@Model.Gender" value="1" class="form-check-input" type="radio" checked>Nam
+                            </label>
+                        </div>
+                        <div class="col-md-3 form-check-inline mr-auto">
+                            <label for="Female" class="control-label">
+                                <input id="Female" asp-for="@Model.Gender" value="0" class="form-check-input" type="radio">Nữ
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+    </form>
+
+
+
+

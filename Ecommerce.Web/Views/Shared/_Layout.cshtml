@@ -1,0 +1,283 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <!-- Ion Icon Fonts-->
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="~/css/flexslider.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <!-- Flaticons  -->
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+    <!-- Theme style  -->
+
+    <link rel="stylesheet" href="~/css/logoslider.css">
+    <link rel="stylesheet" href="~/css/collectionslider.css">
+    <link rel="stylesheet" href="~/css/loader.css">
+
+    <!-- jQuery -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/paginate.js"></script>
+    <script src="~/js/cart.js"></script>
+    <script src="~/js/customer.js"></script>
+    <script>
+
+        // Give $ back to prototype.js; create new alias to jQuery.
+        var $jq = jQuery.noConflict();
+
+    </script>
+    @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+    <!-- Latest compiled and minified CSS -->
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
+
+    <!-- Optional theme -->
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">*@
+
+    <!-- Latest compiled and minified JavaScript -->
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <!------ Include the above in your HEAD tag ---------->
+
+
+
+</head>
+<body>
+    <div class="colorlib-loader" style="display: none;"></div>
+
+    <div id="page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle colorlib-nav-white"><i></i></a>
+        @await Component.InvokeAsync("Menu")
+        <!-- content -->
+        @RenderBody()
+
+
+        @await Component.InvokeAsync("Footer")
+    </div>
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+    </div>
+    <!-- jQuery -->
+    <script src="~/js/jquery.min.js"></script>
+    <!-- popper -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- bootstrap 4.1 -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- jQuery easing -->
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <!-- Waypoints -->
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <!-- Flexslider -->
+    <script src="~/js/jquery.flexslider-min.js"></script>
+    <!-- Owl carousel -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/magnific-popup-options.js"></script>
+    <!-- Date Picker -->
+    <script src="~/js/bootstrap-datepicker.js"></script>
+    <!-- Stellar Parallax -->
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <!-- Main -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <script src="~/js/logoslider.js"></script>
+    <script src="~/js/datepicker.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/loader.js"></script>
+    <script src="~/js/notify.min.js"></script>
+    <script>
+        $(".btnrating").on('click', (function (e) {
+    var previous_value = $("#selected_rating").val();
+
+    var selected_value = $(this).attr("data-attr");
+    $("#selected_rating").val(selected_value);
+    $(".selected-rating").empty();
+    $(".selected-rating").html(selected_value);
+
+
+    for (i = 1; i <= selected_value; ++i) {
+        $("label[for='rating-star-" + i + "']").toggleClass('btn-warning');
+        $("label[for='rating-star-" + i + "']").toggleClass('btn-default');
+    }
+
+    for (ix = 1; ix <= previous_value; ++ix) {
+        $("label[for='rating-star-" + ix + "']").toggleClass('btn-warning');
+        $("label[for='rating-star-" + ix + "']").toggleClass('btn-default');
+    }
+
+        }));
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.CartNotification') && !event.target.matches('.CartNotification')) {
+         $('.CartNotification').css('display', 'none');
+         }
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.ectAiu')) {
+                $('.ReactModalPortal').hide();
+         }
+    }
+        $('.btn-close').click(function () {
+            $('.CartNotification').css('display', 'none');
+        });
+    jQueryAjaxGet = form => {
+        var user = '@Context.Session.GetString("userName")';
+        if (user== '') {
+            return true;
+        }
+    $.ajax({
+        type: 'POST',
+        url: form.action,
+        data: new FormData(form),
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            if (res.isValid) {
+                $('.CartCount').html('Giỏ hàng [' + res.html + ']');
+                $('.CartNotification').css('display', 'block');
+                $('html, body').animate({
+                    scrollTop: $('html').offset().top
+                }, 500, 'easeInOutSine');
+
+            } else {
+
+                $('#snack-bar').empty();
+                $('#snack-bar').append('<div color="#ed6347" class="SnackBar__Wrapper-cdh0b2-0 fKKvZy" style="opacity: 1;"><div class="type-icon"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40" style="vertical-align: middle;"><g><path d="m31.6 10.7l-9.3 9.3 9.3 9.3-2.3 2.3-9.3-9.3-9.3 9.3-2.3-2.3 9.3-9.3-9.3-9.3 2.3-2.3 9.3 9.3 9.3-9.3z"></path></g></svg></div><p class="message">' + res.html + '</p><a class="btn-close" onclick="exit()"><svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40" style="vertical-align: middle;"><g><path d="m31.6 10.7l-9.3 9.3 9.3 9.3-2.3 2.3-9.3-9.3-9.3 9.3-2.3-2.3 9.3-9.3-9.3-9.3 2.3-2.3 9.3 9.3 9.3-9.3z"></path></g></svg></a></div>');
+                $('#snack-bar').show();
+                $('#snack-bar').delay(10000).fadeOut();
+            }
+        },
+
+        error: function (err) {
+            console.log(err);
+        }
+    })
+
+    return false;
+        }
+         jQueryAjaxAddComment = form => {
+        var user = '@Context.Session.GetString("userName")';
+        if (user== '') {
+            return true;
+        }
+    $.ajax({
+        type: 'POST',
+        url: form.action,
+        data: new FormData(form),
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            //if (res.isValid) {
+            //    $.notify(res.html, { globalPosition: 'top center', className: 'success' });
+            //} else {
+            //    $.notify(res.html, { globalPosition: 'top center', className: 'success' });
+            //}
+            $('.ectAiu').html(res.html);
+            $('.ReactModalPortal').show();
+        },
+
+        error: function (err) {
+            console.log(err);
+        }
+    })
+
+    return false;
+        }
+        jQueryAjaxAddCommentReply = form => {
+        var user = '@Context.Session.GetString("userName")';
+        if (user== '') {
+            return true;
+        }
+    $.ajax({
+        type: 'POST',
+        url: form.action,
+        data: new FormData(form),
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            //if (res.isValid) {
+            //    $.notify(res.html, { globalPosition: 'top center', className: 'success' });
+            //} else {
+            //    $.notify(res.html, { globalPosition: 'top center', className: 'success' });
+            //}
+            $('.ectAiu').html(res.html);
+            $('.ReactModalPortal').show();
+        },
+
+        error: function (err) {
+            console.log(err);
+        }
+    })
+
+    return false;
+}
+    </script>
+    <script>
+        function viewmore(event) {
+
+        var skiplength = $(event).parent().children('.reply-comment').length;
+            var Id = $(event).attr("data-attr");
+        $.ajax({ // Hàm ajax
+            type: "post", //Phương thức truyền post hoặc get
+            dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
+            async: false,
+            url: "@Url.Action("ViewMore", "ProductDetail", null, Context.Request.Scheme)", // Nơi xử lý dữ liệu
+            data: {
+                SkipNum: skiplength, //Tên action, dữ liệu gởi lên cho server
+                productCommentId: Id, // gởi số lượng bài viết đã hiển thị cho server
+            },
+            beforeSend: function () {
+                // Có thể thực hiện công việc load hình ảnh quay quay trước khi đổ dữ liệu ra
+            },
+            success: function (res) {
+                var json = JSON.parse(res.html);
+                //alert(Object.keys(json).length);
+                //alert( res.html + res.html.UserName + res.html[0].UserName + json[0].UserName + json.UserName);
+                for (var i = 0; i < Object.keys(json).length; i++) {
+                    $(event).parent().append('<div class="reply-comment"><div class="avatar" style="background-image: url(&quot;../../images/' + json[i].AvatarUrl + '&quot;)"></div><div class="information"><p class="text-user"><span class="text-left">' + json[i].UserName + '</span><span class="text-right">' + json[i].CreatedDate + '</span></p><p class="text-content">' + json[i].Comment + '</p></div></div>');
+                }
+                $(event).remove();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //Làm gì đó khi có lỗi xảy ra
+                console.log('The following error occured: ' + textStatus, errorThrown);
+            }
+        });
+    }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

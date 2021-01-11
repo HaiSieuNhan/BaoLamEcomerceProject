@@ -1,0 +1,86 @@
+﻿@model List<Ecommerce.Service.ViewModels.Admin.SupplierModel.SupplierAdminViewModel>
+@{
+    var stt = 1;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Nhà cung cấp</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Nhà cung cấp</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <a onclick="showInPopup('@Url.Action("Create","Supplier",null,Context.Request.Scheme)','Tạo mới nhà cung cấp')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i>Thêm mới</a>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px !important"> STT </th>
+                                        <th> Tên nhà cung cấp </th>
+                                        <th> Mã nhà cung cấp </th>
+                                        <th> Email </th>
+                                        <th> Số điện thoại </th>
+                                        <th> Fax</th>
+                                        <th style="width:80px !important"> Chức năng </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td> @item.Name  </td>
+                                            <td>@item.CodeName </td>
+                                            <td> @item.Email</td>
+                                            <td>@item.Phone </td>
+                                            <td> @item.Fax</td>
+                                            <td>
+                                                <a onclick="showInPopup('@Url.Action("Edit","Supplier",new { id =item.Id},Context.Request.Scheme)','Cập nhật nhà cung cấp')" title="Cập nhật nhà cung cấp" class="btn btn-primary text-white "><i class="fas fa-random"></i></a>
+                                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                                    <button type="submit" title="Xóa nhà cung cấp" class="btn btn-danger">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+

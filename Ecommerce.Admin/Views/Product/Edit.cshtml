@@ -1,0 +1,215 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.ProductModel.EditProductModel
+@using EcommerceCommon.Infrastructure.Enums
+@{
+    ViewData["Title"] = "EditProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cập nhật thông tin chung</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item">Sản phẩm</li>
+                        <li class="breadcrumb-item active">Cập nhật thông tin chung </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form asp-action="Edit" asp-controller="Product" spellcheck="false" method="post" >
+                <input type="hidden" asp-for="@Model.EditProductViewModel.Id" />
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label" asp-for="@Model.EditProductViewModel.Name"></label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <input asp-for="@Model.EditProductViewModel.Name" class="form-control" placeholder="Nhập tên sản phẩm">
+                                        <span asp-validation-for="@Model.EditProductViewModel.Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"><label asp-for="@Model.EditProductViewModel.CategoryId" class="control-label"></label></div>
+                        <div class="col-md-2 mr-auto">
+                            <select asp-for="@Model.EditProductViewModel.CategoryId" id="CategoryId">
+                                @foreach (var item in Model.Categories)
+                                {
+                                    if (Model.EditProductViewModel.CategoryId == item.Id)
+                                    {
+                                        <option value="@item.Id" selected>@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-4"><label asp-for="@Model.EditProductViewModel.ManufacturerId" class="control-label"></label></div>
+                                <div class="col-md-8 ">
+                                    <select asp-for="@Model.EditProductViewModel.ManufacturerId" id="ManufacturerId">
+                                        @foreach (var item in Model.Manufacturers)
+                                        {
+                                            if (Model.EditProductViewModel.ManufacturerId == item.Id)
+                                            {
+                                                <option value="@item.Id" selected>@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-4"><label asp-for="@Model.EditProductViewModel.SupplierId" class="control-label"></label></div>
+                                <div class="col-md-8 ">
+                                    <select asp-for="@Model.EditProductViewModel.SupplierId" id="SupplierId">
+                                        @foreach (var item in Model.Suppliers)
+                                        {
+                                            if (Model.EditProductViewModel.SupplierId == item.Id)
+                                            {
+                                                <option value="@item.Id" selected>@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"><label asp-for="@Model.EditProductViewModel.CollectionId" class="control-label"></label></div>
+                        <div class="col-md-2 ">
+                            <select asp-for="@Model.EditProductViewModel.CollectionId" id="CollectionId">
+                                @if (Model.EditProductViewModel.CollectionId == null)
+                                {
+                                    <option value="@Guid.Empty" selected>Không có</option>
+                                }
+                                else
+                                {
+                                    <option value="@Guid.Empty">Không có</option>
+                                }
+                                @foreach (var item in Model.Collections)
+                                {
+                                    if (Model.EditProductViewModel.CollectionId == item.Id)
+                                    {
+                                        <option value="@item.Id" selected>@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label" asp-for="@Model.EditProductViewModel.ShortDescription"></label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <textarea asp-for="@Model.EditProductViewModel.ShortDescription" class="form-control" placeholder="Nhập mô tả ngắn" style="height:120px"></textarea>
+                                        <span asp-validation-for="@Model.EditProductViewModel.ShortDescription" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"><label asp-for="@Model.EditProductViewModel.ProductStatus" class="control-label"></label></div>
+                        <div class="col-md-2 mr-auto">
+                            <select asp-for="@Model.EditProductViewModel.ProductStatus" >      
+                                    @if (Model.EditProductViewModel.ProductStatus == ProductStatus.New)
+                                    {
+                                        <option value="@ProductStatus.New" selected>Mới</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@ProductStatus.New">Mới</option>
+                                    }
+                                    @if (Model.EditProductViewModel.ProductStatus == ProductStatus.Available)
+                                    {
+                                        <option value="@ProductStatus.Available" selected>Còn hàng</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@ProductStatus.Available">Còn hàng</option>
+                                    }
+                                    @if (Model.EditProductViewModel.ProductStatus == ProductStatus.OutOfStock)
+                                    {
+                                        <option value="@ProductStatus.OutOfStock" selected>Hết hàng</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@ProductStatus.OutOfStock" >Hết hàng</option>
+                                    }
+                                
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="display:flex">
+                    <div class="row">
+                        <div class="col-md-1"><label class="control-label" asp-for="@Model.EditProductViewModel.Description"></label></div>
+                        <div class="col-md-11">
+                            <div class="input-group">
+                                <textarea asp-for="@Model.EditProductViewModel.Description" class="form-control" id="txtContext"></textarea>
+                                <span asp-validation-for="@Model.EditProductViewModel.Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        <label class="control-label" asp-for="@Model.EditProductViewModel.PublicationDate"></label>
+                        <div class="input-group">
+                            <input type="datetime" id="PublicationDate" asp-for="@Model.EditProductViewModel.PublicationDate" class="form-control" data-toggle="datepicker">
+                        </div>
+                        <span asp-validation-for="@Model.EditProductViewModel.PublicationDate" class="text-danger"></span>
+                    </div>*@
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu lại</button>
+                </div>
+
+            </form>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+

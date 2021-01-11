@@ -1,0 +1,89 @@
+﻿@model List<EcommerceCommon.Infrastructure.ViewModel.Admin.CustomerAdminViewModel>
+@using EcommerceCommon.Infrastructure.Enums
+@{
+    ViewData["Title"] = "GetCustomerList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var stt = 1;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Khách hàng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Khách hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="data-table" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px !important"> STT </th>
+                                        <th style="width:100px !important"> Tên khách hàng </th>
+                                        <th style="width:60px !important"> Giới tính </th>
+                                        <th style="width:140px !important"> Địa chỉ </th>
+                                        <th style="width:120px !important"> Ngày sinh </th>
+                                        <th style="width:120px !important"> Số điện thoại </th>
+                                        <th style="width:120px !important"> Ảnh Avatar </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td>@item.Name </td>
+                                            @if (item.Gender == Gender.Male)
+                                            {
+                                                <td> Nam</td>
+                                            }
+                                            else
+                                            {
+                                                <td> Nữ</td>
+                                            }
+                                            <td>@item.Address</td>
+                                            <td>@item.Birthday </td>
+                                            <td>@item.Phone </td>
+                                            <td><img src="~/images/@item.AvatarUrl" class="small-img"></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+

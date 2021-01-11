@@ -1,0 +1,67 @@
+﻿@model EcommerceCommon.Infrastructure.ViewModel.Admin.ProductDetailAdminViewModel
+@using EcommerceCommon.Infrastructure.Enums
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="row mt-3">
+            <div class="col-md-4">Tên sản phẩm:</div>
+            <div class="col-md-8">@Model.Name</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">Danh mục:</div>
+            <div class="col-md-8">@Model.CategoryName</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Bộ sưu tập:</div>
+            <div class="col-md-8">@Model.CollectionName</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Nhà sản xuất:</div>
+            <div class="col-md-8">@Model.ManufacturerName</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Nhà phân phối:</div>
+            <div class="col-md-8">@Model.SupplierName</div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="row mt-3">
+            <div class="col-md-4">Ngày phát hành:</div>
+            <div class="col-md-8">@Model.PublicationDate</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Trạng thái:</div>
+
+            @if (Model.ProductStatus == ProductStatus.New)
+            {
+                <div class="col-md-8">Mới</div>
+            }
+            else if (Model.ProductStatus == ProductStatus.Available)
+            {
+                <div class="col-md-8">Còn Hàng</div>
+            }
+            else if (Model.ProductStatus == ProductStatus.OutOfStock)
+            {
+                <div class="col-md-8">Hết Hàng</div>
+            }
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Sku:</div>
+            <div class="col-md-8">@Model.Sku</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Lượt xem:</div>
+            <div class="col-md-8">@Model.View</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Từ khóa:</div>
+            <div class="col-md-8">@Model.Keyword</div>
+        </div>
+
+
+    </div>
+</div>

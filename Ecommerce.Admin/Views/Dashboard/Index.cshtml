@@ -1,0 +1,275 @@
+﻿@using Ecommerce.Domain.Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Bảng điều khiển</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Bảng điều khiển</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="row">
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <a asp-action="GetProductRemain" asp-controller="Dashboard" class="dashboard">
+                <div class="info-box">
+
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tổng sản phẩm</span>
+                        <span class="info-box-number">
+                            @ViewBag.TotalProduct
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+
+                </div>
+                <!-- /.info-box -->
+            </a>
+        </div>
+
+        <!-- /.col -->
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <a asp-action="GetProductOrdered" asp-controller="Dashboard" class="dashboard">
+                <div class="info-box mb-3">
+
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Số sản phẩm bán ra</span>
+                        <span class="info-box-number">@ViewBag.TotalQuantityProductOrdered</span>
+                    </div>
+                    <!-- /.info-box-content -->
+
+                </div>
+                <!-- /.info-box -->
+            </a>
+        </div>
+
+
+        <!-- /.col -->
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <a asp-action="GetOrderProcess" asp-controller="Dashboard" class="dashboard">
+
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-scroll"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Đơn hàng cần xử lý</span>
+                        <span class="info-box-number">@ViewBag.CountProcessOrder</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </a>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        
+        <div class="col-12 col-sm-6 col-md-3">
+            <a asp-action="GetNewCustomer" asp-controller="Dashboard" class="dashboard">
+
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Khách hàng mới</span>
+                        <span class="info-box-number">@ViewBag.GetNewAccount</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                </a>
+                <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Báo cáo theo tháng </h5>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">@(ViewBag.TotalRevenueThisMonth)đ</span>
+                                    <span>Doanh thu</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> Tháng @ViewBag.ThisMonth
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="description-block border-right">
+                                <h5 class="description-header">@(ViewBag.TotalRevenueThisYear)đ</h5>
+                                <span class="description-text">Tổng doanh thu(@DateTime.Now.Year)</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title">Đơn hàng mới nhất</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <th style="width:160px">Mã đơn hàng</th>
+                                    <th >Thông tin đơn hàng</th>
+                                    <th style="width:180px">Trạng thái</th>
+                                    <th style="width:160px">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.NewOrders != null)
+                                {
+                                    @foreach (var item in ViewBag.NewOrders)
+                                    {
+                                <tr>
+                                    <td><a onclick="showInPopup('@Url.Action("GetOrderInfo","Order",new { code =item.Code},Context.Request.Scheme)','Chi tiết đơn hàng')" style="cursor:pointer;">@item.Code</a></td>
+                                    <td>
+                                        @foreach (var item1 in item.ProductOrderedAdminViewModels)
+                                        {
+                                            @item1.ProductName
+                                            @if (item1.ProductColor != null)
+                                            {
+                                                @(" ,Màu " + item1.ProductColor + " ")
+                                            }
+                                            @if (item1.ProductSize != null)
+                                            {
+                                                @(",Cỡ " + item1.ProductSize + " ")
+                                            }
+                                            @(" (x" + item1.Quantity + ") ;")
+                                        }
+
+                                    </td>
+                                    @switch (item.OrderStatus)
+                                    {
+                                        case OrderStatus.OrderSuccess:
+                                            {
+                                                <td><span class="badge badge-light">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+                                        case OrderStatus.PickingUp:
+                                            {
+                                                <td><span class="badge badge-info">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+                                        case OrderStatus.PackageDone:
+                                            {
+                                                <td><span class="badge badge-secondary">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+                                        case OrderStatus.Delivering:
+                                            {
+                                                <td><span class="badge badge-primary">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+                                        case OrderStatus.DeliveredSuccess:
+                                            {
+                                                <td><span class="badge badge-success">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+                                        case OrderStatus.Cancle:
+                                            {
+                                                <td><span class="badge badge-danger">@item.OrderStatus</span></td>
+                                                break;
+                                            }
+
+                                    }
+                                    <td>
+                                        @(item.TotalPrice)đ
+                                    </td>
+                                </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                    <a asp-action="GetOrderList" asp-controller="Order" class="btn btn-sm btn-secondary float-right">Xem tất cả</a>
+                </div>
+                <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+        </div>
+        
+    </div>
+    

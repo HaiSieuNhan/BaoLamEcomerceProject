@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Import Supplier in Excel";
+}
+
+<form asp-action="Import" asp-controller="Supplier" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Chọn File Excel của bạn</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card ">
+                        <form asp-action="Import" asp-controller="Supplier" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" />
+                            <hr />
+                            <button type="submit">Upload</button>
+                        </form>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+</div>

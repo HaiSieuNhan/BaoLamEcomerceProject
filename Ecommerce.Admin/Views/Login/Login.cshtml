@@ -1,0 +1,61 @@
+﻿@model Ecommerce.Service.Dto.UserLoginDto
+@{
+
+    Layout = null;
+}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - Ecommerce.Admin</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+        @*<link rel="stylesheet" href="~/css/bootstrap.min.css" />*@
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bbootstrap 4 -->
+        <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="~/plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.css">
+        <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+
+        <link rel="stylesheet" href="~/css/login.css">
+
+        @*<script src="~/plugins/ckfinder/ckfinder.js"></script>*@
+
+
+        <!-- Latest compiled and minified CSS -->
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+
+    </head>
+
+<div class="wrapper">
+    <form class="form-signin" asp-action="Login" asp-controller="Login" method="post" spellcheck="false">
+        <h2 class="form-signin-heading">Đăng nhập</h2>
+        <input asp-for="Username" class="form-control" type="text" placeholder="Nhập tên đăng nhập" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+        <input asp-for="Password" class="form-control" type="password" placeholder="Mật Khẩu từ 6 đến 32 ký tự" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="text-danger">@ViewBag.Message</div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng Nhập</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

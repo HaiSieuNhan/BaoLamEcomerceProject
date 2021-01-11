@@ -1,0 +1,115 @@
+﻿@model EcommerceCommon.Infrastructure.ViewModel.Admin.OrderInfoAdminViewModel
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="row mt-3">
+            <div class="col-md-4">Mã đơn hàng:</div>
+            <div class="col-md-8">@Model.Code</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">Tên khách hàng:</div>
+            <div class="col-md-8">@Model.CustomerName</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Số điện thoại:</div>
+            <div class="col-md-8">@Model.Phone</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Địa chỉ:</div>
+            <div class="col-md-8">@Model.Address</div>
+        </div>
+        
+    </div>
+    <div class="col-md-6">
+        <div class="row mt-3">
+            <div class="col-md-4">Ngày đặt hàng:</div>
+            <div class="col-md-8">@Model.DayOfWeek , @Model.CreatedDate</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Trạng thái đơn hàng:</div>
+            <div class="col-md-8">@Model.OrderStatus</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">Hình thức thanh toán:</div>
+            <div class="col-md-8">@Model.PaymentMethod</div>
+        </div>
+        
+
+    </div>
+</div>
+<table class="order-detail">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tạm tính</th>
+        </tr>
+    </thead>
+    @if (Model.OrderDetailAdminViewModels.Count != 0)
+    {
+        <tbody>
+            @foreach (var item in Model.OrderDetailAdminViewModels)
+            {
+                <tr>
+                    <td>
+                        <div class="product-item">
+                            <img src="~/images/@item.ProductImage" alt="@item.ProductName" />
+                            <div class="product-info">
+                                    @item.ProductName
+                                    @if (item.ProductColor != null)
+                                    {
+                                        @(" ,Màu " + item.ProductColor + " ")
+                                    }
+                                    @if (item.ProductSize != null)
+                                    {
+                                        @(",Cỡ " + item.ProductSize + " ")
+                                    }
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">@(item.Price)₫</td>
+                    <td class="quantity">@item.Quantity</td>
+                    <td class="raw-total">@(item.TotalPrice)₫</td>
+                </tr>
+            }
+
+        </tbody>
+    }
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <span>Tạm tính</span>
+            </td>
+            <td>
+                @(Model.NotionalAmount)₫
+            </td>
+        </tr>
+        @if (Model.DiscountAmount != "0")
+        {
+            <tr>
+                <td colspan="3">
+                    <span>Giảm giá</span>
+
+                </td>
+                <td>
+                    @(Model.DiscountAmount)₫
+                </td>
+            </tr>
+
+        }
+        <tr>
+            <td colspan="3">
+                <span>Tổng cộng</span>
+            </td>
+            <td>
+                <span class="sum">@(Model.TotalAmount)₫</span>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+

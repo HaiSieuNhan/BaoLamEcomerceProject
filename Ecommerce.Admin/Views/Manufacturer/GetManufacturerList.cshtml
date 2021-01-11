@@ -1,0 +1,11 @@
+﻿@model List<Ecommerce.Service.ViewModels.Admin.ManufacturerModel.ManufacturerAdminViewModel>
+
+@{
+    ViewData["Title"] = "GetManufacturer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+

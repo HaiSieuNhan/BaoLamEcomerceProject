@@ -1,0 +1,188 @@
+﻿@model EcommerceCommon.Infrastructure.ViewModel.Web.CustomerOrderHistoryModel
+@using Ecommerce.Domain.Models
+@{
+    Layout = null;
+}
+@if (Model.CustomerOrderHistoryViewModels.Count != 0)
+{
+    <div class="current-status">
+        <p class="title">
+            Trạng thái đơn hàng
+        </p>
+        <div class="status-block">
+            <span class="status-text">
+                Trạng thái:
+                <b>
+                    @Model.CustomerOrderHistoryViewModels[0].OrderStatus | @Model.CustomerOrderHistoryViewModels[0].Hour @Model.CustomerOrderHistoryViewModels[0].DayOfWeek, @Model.CustomerOrderHistoryViewModels[0].Date
+                </b>
+            </span>
+            @if (Model.CustomerOrderHistoryViewModels[0].OrderStatus != OrderStatus.Cancle)
+            {
+                <div class="progress-bars">
+
+                    @switch (Model.CustomerOrderHistoryViewModels[0].OrderStatus)
+                    {
+                        case OrderStatus.OrderSuccess:
+                            {
+                                <div class="progress-current">
+                                    <span>Đặt hàng thành công</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đang lấy hàng</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đóng gói xong</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đang vận chuyển</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Giao hàng thành công</span>
+                                </div>
+                                break;
+                            }
+                        case OrderStatus.PickingUp:
+                            {
+                                <div class="progress-done">
+                                    <span>Đặt hàng thành công</span>
+                                </div>
+                                <div class="progress-current">
+                                    <span>Đang lấy hàng</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đóng gói xong</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đang vận chuyển</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Giao hàng thành công</span>
+                                </div>
+                                break;
+                            }
+                        case OrderStatus.PackageDone:
+                            {
+                                <div class="progress-done">
+                                    <span>Đặt hàng thành công</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đang lấy hàng</span>
+                                </div>
+                                <div class="progress-current">
+                                    <span>Đóng gói xong</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Đang vận chuyển</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Giao hàng thành công</span>
+                                </div>
+                                break;
+                            }
+                        case OrderStatus.Delivering:
+                            {
+                                <div class="progress-done">
+                                    <span>Đặt hàng thành công</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đang lấy hàng</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đóng gói xong</span>
+                                </div>
+                                <div class="progress-current">
+                                    <span>Đang vận chuyển</span>
+                                </div>
+                                <div class="progress-wait">
+                                    <span>Giao hàng thành công</span>
+                                </div>
+                                break;
+                            }
+                        case OrderStatus.DeliveredSuccess:
+                            {
+                                <div class="progress-done">
+                                    <span>Đặt hàng thành công</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đang lấy hàng</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đóng gói xong</span>
+                                </div>
+                                <div class="progress-done">
+                                    <span>Đang vận chuyển</span>
+                                </div>
+                                <div class="progress-current">
+                                    <span>Giao hàng thành công</span>
+                                </div>
+                                break;
+                            }
+                    }
+
+
+
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="order-status-detail">
+        <p class="title">
+            Chi tiết trạng thái đơn hàng
+        </p>
+        <div class="detail">
+            <div class="detail-border">
+                <div class="update-date">
+                    Cập nhật mới nhất: @Model.CustomerOrderHistoryViewModels[0].DayOfWeek, @Model.CustomerOrderHistoryViewModels[0].Date
+                </div>
+                <div class="latest-update-status">
+                    <span class="left-status">
+                        @Model.CustomerOrderHistoryViewModels[0].Hour
+                    </span>
+                    <span class="right-status">
+                        @Model.CustomerOrderHistoryViewModels[0].OrderStatus
+                    </span>
+                </div>
+                @foreach (var item in Model.CustomerOrderHistoryViewModels)
+                {
+                    @if (Model.CustomerOrderHistoryViewModels.IndexOf(item) != 0 && item.Date == Model.OrderHistoryDates[0].Date)
+                    {
+                        <div class="update-status">
+                            <span class="left-status">
+                                @item.Hour
+                            </span>
+                            <span class="right-status">
+                                @item.OrderStatus
+                            </span>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.OrderHistoryDates)
+                {
+                    @if (Model.OrderHistoryDates.IndexOf(item) != 0)
+                    {
+                        <div class="update-date">
+                            @item.DayOfWeek, @item.Date
+                        </div>
+                        foreach (var subItem in Model.CustomerOrderHistoryViewModels)
+                        {
+                            if (subItem.Date == item.Date)
+                            {
+                                <div class="update-status">
+                                    <span class="left-status">
+                                        @subItem.Hour
+                                    </span>
+                                    <span class="right-status">
+                                        @subItem.OrderStatus
+                                    </span>
+                                </div>
+                            }
+                        }
+                    }
+                }
+
+
+            </div>
+        </div>
+    </div>
+}

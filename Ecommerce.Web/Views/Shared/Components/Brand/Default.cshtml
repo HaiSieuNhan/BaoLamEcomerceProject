@@ -1,0 +1,17 @@
+﻿@model IList<Ecommerce.Service.ViewModels.Web.Homepage.ManufacturerHomepageViewModel>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+            <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đối tác tin cậy</font></font></h2>
+        </div>
+    </div>
+    <div id="logo-carousel">
+        @foreach (var item in Model)
+        {
+            <div class="slide col-md-12"><img src="~/images/@item.UrlImage"></div>
+        }
+
+    </div>
+
+</div>
+

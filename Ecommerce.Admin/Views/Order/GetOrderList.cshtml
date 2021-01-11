@@ -1,0 +1,12 @@
+﻿@model List<EcommerceCommon.Infrastructure.ViewModel.Admin.OrderAdminViewModel>
+
+@{
+    ViewData["Title"] = "GetOrderListViewModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+    <div id="view-all">
+        @await Html.PartialAsync("_ViewAll", Model)
+    </div>
+
+

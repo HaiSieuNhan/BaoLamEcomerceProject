@@ -1,0 +1,10 @@
+﻿@model List<Ecommerce.Service.ViewModels.Admin.ProductColorModel.ProductColorAdminViewModel>
+@{
+    ViewData["Title"] = "GetProductColorList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
